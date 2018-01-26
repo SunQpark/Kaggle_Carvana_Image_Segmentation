@@ -11,8 +11,6 @@ class TRAIN:
             self.sess = sess
         self.weight = weight
 
-    def
-
     def train(self, epoch, redundancy, keep_prob):  # 200 per training(0~199), 8 per validation(200-207)
 
         sess = self.sess

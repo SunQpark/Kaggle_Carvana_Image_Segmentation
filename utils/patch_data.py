@@ -14,7 +14,7 @@ def load_data():
 
 if __name__ == '__main__':
     id_list = [id.replace('.jpg', '') for id in  os.listdir('inputs/train')]
-    
+
     images = None
     labels = None
 
@@ -28,7 +28,16 @@ if __name__ == '__main__':
     
     num_data = images.shape[0]
     shuffle = np.random.permutation(range(num_data))
-    
+    images = images[shuffle]
+    labels = labels[shuffle]
 
+    num_patches_per_batch = 10000
+    batch_index = 0
     with gzip.open('inputs/data_patch/data.pkl.gz', 'wb') as f:
-        pkl.dump((images[shuffle], labels[shuffle]), f)
+        while batch_index < images.shape[0] - num_patches_per_batch:
+            pkl.dump((\
+            images[batch_index : batch_index + num_patches_per_batch], \
+            labels[batch_index : batch_index + num_patches_per_batch]), \
+            f)
+            batch_index += num_patches_per_batch
+        pkl.dump((images[batch_index:], labels[batch_index:]), f)

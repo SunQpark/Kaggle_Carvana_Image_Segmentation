@@ -5,8 +5,8 @@ from PIL import Image
 def rand_crop(id, patch_size=572, num_patch=10):
 
     # todo: resize labels to (388, 388)
-    image_path = 'inputs/train/' + id + '.jpg'
-    mask_path = 'inputs/train_masks/' + id + '_mask.gif'
+    image_path = 'inputs/train/{}.jpg'.format(id)
+    mask_path = 'inputs/train_masks/{}_mask.gif'.format(id)
     image = Image.open(image_path)
     mask = Image.open(mask_path)
 
@@ -36,6 +36,10 @@ def rand_crop(id, patch_size=572, num_patch=10):
     return image_batch, label_batch
 
 def empty(mask, min_ratio = 0.2):
+    '''
+    returns True if given patch of mask is nearly empty(background)
+    '''
+    
     num_ent = mask.size[0] * mask.size[0]
     num_nonzero = np.sum(mask)
     if num_nonzero / num_ent < min_ratio:

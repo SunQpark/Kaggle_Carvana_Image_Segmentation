@@ -1,19 +1,11 @@
-import pickle
 import tensorflow as tf
 
 
 class UNET_MODEL:
-    def __init__(self, sess=None, weight=False):
-        self.x = tf.placeholder(dtype='float32', shape=[None, self.length, self.length, 4], name='input_image')
-        self.y = tf.placeholder(dtype='float32', shape=[None, self.length, self.length, 1], name='input_label')
-        if sess is not None:
-            self.sess = sess
-        self.weight = weight
-
     def build_model(self, image, keep_prob, phase_train):  # phase_train = tf.bool- train or test
         shape = tf.shape(image)
         # Conv1_1, 1_2 & Pool1
-        filt1_1, bias1_1, _ = self.get_weight_bias(1, 64)
+        filt1_1, bias1_1, _ = self.get_weight_bias(3, 64)
         conv1_1 = self.conv_layer(image, filt1_1, bias1_1, name='conv1_1')
         relu1_1 = tf.nn.relu(conv1_1, name='relu1_1')
         filt1_2, bias1_2, _ = self.get_weight_bias(64, 64)

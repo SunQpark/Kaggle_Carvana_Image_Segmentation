@@ -4,3 +4,7 @@ train_hq.zip
 train_masks.csv.zip
 train_masks.zip
 train.zip
+.vscode/settings.json
+.ipynb_checkpoints/Experiments-checkpoint.ipynb
+.vscode/settings.json
+.vscode/.ropeproject/config.py

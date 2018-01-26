@@ -8,3 +8,6 @@ train.zip
 .ipynb_checkpoints/Experiments-checkpoint.ipynb
 .vscode/settings.json
 .vscode/.ropeproject/config.py
+inputs/train
+inputs/train_masks
+inputs/train_hq

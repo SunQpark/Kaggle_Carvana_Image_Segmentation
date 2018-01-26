@@ -1,9 +1,10 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from PIL import Image
 
 
 def rand_crop(id, patch_size=572, num_patch=10):
+
+    # todo: resize labels to (388, 388)
     image_path = 'inputs/train/' + id + '.jpg'
     mask_path = 'inputs/train_masks/' + id + '_mask.gif'
     image = Image.open(image_path)
@@ -43,6 +44,8 @@ def empty(mask, min_ratio = 0.2):
         return False
 
 if __name__ == '__main__':
+    import matplotlib.pyplot as plt
+
     file_id = '0cdf5b5d0ce1_01'
     image_batch, label_batch = rand_crop(file_id, patch_size=572)
 

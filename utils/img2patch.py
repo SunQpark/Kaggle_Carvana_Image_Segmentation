@@ -14,7 +14,7 @@ def rand_crop(id, patch_size=572, label_size = 388, num_patch=10):
     offset_h = np.random.randint(0, high=image.size[1] - patch_size, size=num_patch)
 
     image_batch = np.zeros((num_patch, patch_size, patch_size, 3), dtype=np.uint8)
-    label_batch = np.zeros((num_patch, label_size, patch_size, 1), dtype=bool)
+    label_batch = np.zeros((num_patch, label_size, label_size, 1), dtype=bool)
 
     idx = 0
     while idx < num_patch:

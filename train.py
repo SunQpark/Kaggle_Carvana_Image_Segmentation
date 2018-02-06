@@ -6,17 +6,18 @@ from utils.patch_data import InputImage
 
 class TRAIN:
     def __init__(self, sess=None, weight=False):
-        self.x = tf.placeholder(dtype='float32', shape=[None, self.length, self.length, 1], name='input_image')
-        self.y = tf.placeholder(dtype='float32', shape=[None, self.length, self.length, 2], name='input_label')
+        self.x = tf.placeholder(dtype='float32', shape=[None, 572, 572, 3], name='input_image')
+        self.y = tf.placeholder(dtype='float32', shape=[None, 388, 388, 2], name='input_label')
         if sess is not None:
             self.sess = sess
         self.weight = weight
 
-    def train(self, epoch, redundancy, keep_prob):  # 200 per training(0~199), 8 per validation(200-207)
+    def train(self, epoch, keep_prob):
 
         sess = self.sess
         phase = tf.placeholder(tf.bool)
-        hypothesis = self.build_model(self.x, keep_prob=keep_prob, phase_train=phase)
+        unet = UNET_MODEL()
+        hypothesis = unet.build_model(image=self.x, keep_prob=keep_prob, phase_train=phase)
 
         with tf.name_scope("loss"):
             loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=hypothesis, labels=self.y))
@@ -39,10 +40,11 @@ class TRAIN:
             saver.restore(sess, './saved_model/my_final_model')
         writer = tf.summary.FileWriter('./board/sum')
         writer.add_graph(sess.graph)
+        batch_image, batch_label = InputImage(0, batch_size)
 
         for i in range(training_epoch):
             for j in range(num_batch):
-                batch_image, batch_label = InputImage(j, batch_size)
+                # batch_image, batch_label = InputImage(j, batch_size)
                 sess.run(optimize, feed_dict={self.x: batch_image, self.y: batch_label, phase: True})
                 cost = sess.run(loss, feed_dict={self.x: batch_image, self.y: batch_label, phase: True})
                 print("epoch : ", i + 1, ", batch : ", j + 1, ", loss : ", cost)

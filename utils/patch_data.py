@@ -7,30 +7,33 @@ from utils.img2patch import rand_crop
 
 class InputImage:
     def __init__(self, order, num_images_per_batch):
-        self.images = None
-        self.labels = None
         self.order = order  # the order of batch
         self.num_images_per_batch = num_images_per_batch
+        self.make_patch()
 
     def make_patch(self):
         id_list = [id.replace('.jpg', '') for id in os.listdir('inputs/train')]
 
+        images = None
+        labels = None
         cnt = 0
         for i, id in enumerate(id_list):
             if i >= self.order * self.num_images_per_batch:
-                images_patch, labels_patch = rand_crop(id)
-                self.images = np.concatenate((self.images, images_patch), axis=0)
-                self.labels = np.concatenate((self.labels, labels_patch), axis=0)
+                if images is None:
+                    images, labels = rand_crop(id)
+                else:
+                    images_patch, labels_patch = rand_crop(id)
+                    images = np.concatenate((images, images_patch), axis=0)
+                    labels = np.concatenate((labels, labels_patch), axis=0)
                 cnt += 1
                 if cnt == self.num_images_per_batch:
                     break
-
-        num_data = self.images.shape[0]
+        num_data = images.shape[0]
         shuffle = np.random.permutation(range(num_data))
-        self.images = self.images[shuffle]
-        self.labels = self.labels[shuffle]
+        images = images[shuffle]
+        labels = labels[shuffle]
 
-        return self.images, self.labels
+        return images, labels
 
         '''
         num_patches_per_batch = 10000

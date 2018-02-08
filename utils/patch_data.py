@@ -9,15 +9,14 @@ class InputImage:
     def __init__(self, order, num_images_per_batch):
         self.order = order  # the order of batch
         self.num_images_per_batch = num_images_per_batch
+        self.id_list = [id.replace('.jpg', '') for id in os.listdir('inputs/train')]
         self.make_patch()
 
     def make_patch(self):
-        id_list = [id.replace('.jpg', '') for id in os.listdir('inputs/train')]
-
         images = None
         labels = None
         cnt = 0
-        for i, id in enumerate(id_list):
+        for i, id in enumerate(self.id_list):
             if i >= self.order * self.num_images_per_batch:
                 if images is None:
                     images, labels = rand_crop(id)
@@ -28,12 +27,15 @@ class InputImage:
                 cnt += 1
                 if cnt == self.num_images_per_batch:
                     break
+
         num_data = images.shape[0]
         shuffle = np.random.permutation(range(num_data))
         images = images[shuffle]
         labels = labels[shuffle]
+        #print(labels.shape)
 
-        return images, labels
+        with gzip.open('inputs/data_patch/data.pkl.gz', 'wb') as f:
+            pkl.dump([images, labels], f)
 
         '''
         num_patches_per_batch = 10000

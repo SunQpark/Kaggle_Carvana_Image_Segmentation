@@ -1,14 +1,15 @@
 from keras.models import Model, load_model ,Sequential
 from keras.layers import Input, concatenate, Cropping2D
 from keras.layers import Dense, Dropout, Activation, Flatten
-from keras.layers import Conv2D, MaxPool2D
+from keras.layers import Conv2D, MaxPool2D, ZeroPadding2D
 from keras.layers import Conv2DTranspose
 from keras.utils import np_utils
 
 
 def model(X_input, y):
     X_input = Input(shape=(None, None, 3))
-    X = Conv2D(64, (3, 3), activation='relu')(X_input)
+    X = ZeroPadding2D(padding=(92, 92))(X_input)
+    X = Conv2D(64, (3, 3), activation='relu')(X)
     X = Conv2D(64, (3, 3), activation='relu')(X)
     X0 = Cropping2D(cropping=((4, 4), (4, 4)))(X)
 
@@ -65,6 +66,14 @@ def model(X_input, y):
     # score = model.evaluate(X_test, y_test, verbose=1)
 
     # model.save("models/model.hdf5")
+
+def model_naive_keras(X_input, y):
+    model = Sequential()
+    model.add( Conv2D(16, 3, activation='relu', padding='same', input_shape=(320, 480, 12) ) )
+    model.add( Conv2D(32, 3, activation='relu', padding='same') )
+    model.add( Conv2D(1, 5, activation='sigmoid', padding='same') )
+
+    pass
 
 if __name__ == '__main__':
     pass

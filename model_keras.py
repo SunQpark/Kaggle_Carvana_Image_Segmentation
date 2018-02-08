@@ -21,7 +21,7 @@ def model(X_input, y):
     X = MaxPool2D(pool_size=(2, 2), padding='same')(X)
     X = Conv2D(256, (3, 3), activation='relu')(X)
     X = Conv2D(256, (3, 3), activation='relu')(X)
-    X2 = Cropping2D(cropping=((16, 16), (15, 15)))(X)
+    X2 = Cropping2D(cropping=((16, 15), (16, 15)))(X)
 
     X = MaxPool2D(pool_size=(2, 2), padding='same')(X)
     X = Conv2D(512, (3, 3), activation='relu')(X)

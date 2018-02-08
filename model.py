@@ -101,8 +101,8 @@ class UNET_MODEL:
         conv9_2 = self.conv_layer(relu9_1, filt9_2, bias9_2, name='conv9_2')
         relu9_2 = tf.nn.relu(conv9_2, name='relu9_2')
 
-        filt10 = tf.Variable(tf.truncated_normal([1, 1, 64, 2], dtype='float32', stddev=1e-1), name='filter')
-        bias10 = tf.Variable(tf.constant(0, shape=[2], dtype='float32'), name='bias')
+        filt10 = tf.Variable(tf.truncated_normal([1, 1, 64, 1], dtype='float32', stddev=1e-1), name='filter')
+        bias10 = tf.Variable(tf.constant(0, shape=[1], dtype='float32'), name='bias')
         conv10 = self.conv_layer(relu9_2, filt10, bias10, name='conv10')
 
         return conv10

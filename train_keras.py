@@ -16,7 +16,7 @@ if __name__ == '__main__':
         images.append(img)
         labels.append(mask)
 
-    images = np.array(images)
+    images = np.array(images)/255
     labels = np.array(labels)[:, :, :, np.newaxis]
 
     model = model(images, labels)

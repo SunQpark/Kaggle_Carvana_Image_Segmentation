@@ -56,7 +56,7 @@ def model(X_input, y):
 
     model = Model(input=X_input, outputs=X_out)
 
-    model.compile(loss='sparse_categorical_crossentropy',
+    model.compile(loss='binary_categorical_crossentropy',
                 optimizer='adam',
                 metrics=['accuracy'])
     return model
@@ -73,7 +73,7 @@ def model_naive_keras(X_input, y):
     model.add( Conv2D(32, 3, activation='relu', padding='same') )
     model.add( Conv2D(1, 5, activation='sigmoid', padding='same') )
 
-    pass
+
 
 if __name__ == '__main__':
     pass

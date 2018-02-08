@@ -23,4 +23,4 @@ if __name__ == '__main__':
 
     model = model(images, labels)
 
-    model.fit(images, labels)
+    model.fit(images, labels, epochs=20)

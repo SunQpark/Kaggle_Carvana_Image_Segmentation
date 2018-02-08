@@ -56,11 +56,7 @@ def model(X_input, y):
 
     model = Model(input=X_input, outputs=X_out)
 
-<<<<<<< HEAD
-    model.compile(loss='binary_categorical_crossentropy',
-=======
     model.compile(loss='binary_crossentropy',
->>>>>>> 3f9092fee60b6ae46f0b424acbe50c84486fa71e
                 optimizer='adam',
                 metrics=['binary_accuracy'])
     return model
@@ -76,8 +72,6 @@ def model_naive_keras(X_input, y):
     model.add( Conv2D(16, 3, activation='relu', padding='same', input_shape=(320, 480, 12) ) )
     model.add( Conv2D(32, 3, activation='relu', padding='same') )
     model.add( Conv2D(1, 5, activation='sigmoid', padding='same') )
-
-
 
 if __name__ == '__main__':
     pass

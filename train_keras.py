@@ -1,6 +1,5 @@
 import os
 import numpy as np
-import matplotlib.pyplot as plt
 from PIL import Image
 from model_keras import model
 
@@ -25,8 +24,4 @@ if __name__ == '__main__':
     model = model(images, labels)
 
     model.fit(images, labels, epochs=20)
-
-    img_result = model.predict(images[0])
-
-    plt.imshow(img_result)
-    plt.show()
+    model.save('first_model.hdf5')

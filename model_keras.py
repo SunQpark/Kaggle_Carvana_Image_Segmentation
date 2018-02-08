@@ -55,10 +55,10 @@ def model(X_input, y):
 
     model = Model(input=X_input, outputs=X_out)
 
-    model.compile(loss='categorical_crossentropy',
+    model.compile(loss='sparse_categorical_crossentropy',
                 optimizer='adam',
                 metrics=['accuracy'])
-
+    return model
     # model.fit(X_train, y_train,
     #         batch_size=32, epochs=10, verbose=1)
 

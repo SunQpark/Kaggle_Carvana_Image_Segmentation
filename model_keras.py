@@ -58,7 +58,7 @@ def model(X_input, y):
 
     model.compile(loss='binary_crossentropy',
                 optimizer='adam',
-                metrics=['accuracy'])
+                metrics=['binary_accuracy'])
     return model
     # model.fit(X_train, y_train,
     #         batch_size=32, epochs=10, verbose=1)

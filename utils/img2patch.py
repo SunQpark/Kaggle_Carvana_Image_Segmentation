@@ -2,9 +2,9 @@ import numpy as np
 from PIL import Image
 
 
-def rand_crop(id, patch_size=572, num_patch=10):
+def rand_crop(id, patch_size=572, label_size = 388, num_patch=10):
 
-    # todo: resize labels to (388, 388)
+    # todo: resize labels to (388, 388) -completed
     image_path = 'inputs/train/{}.jpg'.format(id)
     mask_path = 'inputs/train_masks/{}_mask.gif'.format(id)
     image = Image.open(image_path)
@@ -14,16 +14,20 @@ def rand_crop(id, patch_size=572, num_patch=10):
     offset_h = np.random.randint(0, high=image.size[1] - patch_size, size=num_patch)
 
     image_batch = np.zeros((num_patch, patch_size, patch_size, 3), dtype=np.uint8)
-    label_batch = np.zeros((num_patch, patch_size, patch_size, 1), dtype=bool)
+    label_batch = np.zeros((num_patch, label_size, label_size, 1), dtype=bool)
 
     idx = 0
     while idx < num_patch:
+        # patch
         left = offset_w[idx]
         right = offset_w[idx] + patch_size
         upper = offset_h[idx]
         lower = offset_h[idx] + patch_size
 
-        mask_crop = mask.crop((left, upper, right, lower))
+        # label
+        edge = int((patch_size-label_size)/2)  # 92
+
+        mask_crop = mask.crop((left + edge, upper + edge, right - edge, lower - edge))
 
         if empty(mask_crop) is True:
             offset_w[idx] = np.random.randint(0, high=image.size[0] - patch_size)

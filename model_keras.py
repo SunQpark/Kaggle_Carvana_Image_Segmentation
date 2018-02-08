@@ -11,7 +11,7 @@ def model(X_input, y):
     X = ZeroPadding2D(padding=(92, 92))(X_input)
     X = Conv2D(16, (3, 3), activation='relu')(X)
     X = Conv2D(16, (3, 3), activation='relu')(X)
-    X0 = Cropping2D(cropping=((86, 86), (84, 84)))(X)
+    X0 = Cropping2D(cropping=((86, 85), (86, 85)))(X)
 
     X = MaxPool2D(pool_size=(2, 2), padding='same')(X)
     X = Conv2D(32, (3, 3), activation='relu')(X)

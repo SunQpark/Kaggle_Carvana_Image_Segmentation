@@ -18,6 +18,8 @@ if __name__ == '__main__':
 
     images = np.array(images)/255
     labels = np.array(labels)[:, :, :, np.newaxis]
+    labels = np.pad(labels, ((2, 2), (2, 2)))
+    print(labels.shape)
 
     model = model(images, labels)
 

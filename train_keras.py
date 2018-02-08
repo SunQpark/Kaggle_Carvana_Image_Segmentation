@@ -23,5 +23,5 @@ if __name__ == '__main__':
 
     model = model(images, labels)
 
-    model.fit(images, labels, epochs=20)
+    model.fit(images, labels, epochs=10)
     model.save('first_model.hdf5')

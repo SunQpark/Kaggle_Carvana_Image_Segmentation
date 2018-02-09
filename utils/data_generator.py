@@ -31,10 +31,14 @@ def set_data_gen():
         target_size=(1280, 1918),
         class_mode=None,
         color_mode='grayscale',
-        save_to_dir='inputs/augmented',
         batch_size=2,
         seed=seed
     )
+    '''
+    data2 = mask_generator.next()
+    dataarray = np.asarray(data2)
+    np.savetxt("temp.csv", dataarray[0, :, :, 0], delimiter=",")
+    '''
 
     '''
     # reading rle-formatted masks from csv

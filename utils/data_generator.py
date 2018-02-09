@@ -56,9 +56,10 @@ def set_data_gen():
 
     # combine generators into one which yields image and masks
     train_generator = zip(image_generator, mask_generator)
-    return train_generator
+    return image_generator
 
 
 if __name__ == '__main__':
-    set_data_gen()
+    train_gen = set_data_gen()
+    data = train_gen.yields
 

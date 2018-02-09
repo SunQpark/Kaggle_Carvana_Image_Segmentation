@@ -11,8 +11,8 @@ def set_data_gen():
                         width_shift_range=0.1,
                         height_shift_range=0.1,
                         zoom_range=0.2)
-    image_datagen = ImageDataGenerator(**data_gen_args)
-    mask_datagen = ImageDataGenerator(**data_gen_args)
+    image_datagen = ImageDataGenerator(**data_gen_args, rescale=1./255)
+    mask_datagen = ImageDataGenerator(**data_gen_args, rescale=1./255)
 
     # Provide the same seed and keyword arguments to the fit and flow methods
     seed = 1
@@ -23,6 +23,7 @@ def set_data_gen():
         'inputs/train', 
         target_size=(1280, 1918),
         class_mode=None,
+        color_mode='rgb',
         batch_size=2,
         seed=seed)
 
@@ -34,6 +35,7 @@ def set_data_gen():
         batch_size=2,
         seed=seed
     )
+
     '''
     data2 = mask_generator.next()
     dataarray = np.asarray(data2)
@@ -60,7 +62,7 @@ def set_data_gen():
 
     # combine generators into one which yields image and masks
     train_generator = zip(image_generator, mask_generator)
-    return image_generator
+    return train_generator
 
 
 if __name__ == '__main__':

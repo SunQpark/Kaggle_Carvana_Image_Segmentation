@@ -29,6 +29,7 @@ def set_data_gen():
         'inputs/train_mask', target_size=(1280, 1918),
         class_mode=None,
         color_mode='grayscale',
+        save_to_dir='inputs/augmented',
         batch_size=2,
         seed=seed
     )

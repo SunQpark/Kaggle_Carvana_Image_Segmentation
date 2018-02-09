@@ -6,7 +6,7 @@ from keras.layers import Conv2DTranspose
 from keras.utils import np_utils
 
 
-def model(X_input, y):
+def Unet():
     X_input = Input(shape=(None, None, 3))
     X = ZeroPadding2D(padding=(92, 92))(X_input)
     X = Conv2D(16, (3, 3), activation='relu')(X)
@@ -60,14 +60,8 @@ def model(X_input, y):
                 optimizer='adam',
                 metrics=['binary_accuracy'])
     return model
-    # model.fit(X_train, y_train,
-    #         batch_size=32, epochs=10, verbose=1)
 
-    # score = model.evaluate(X_test, y_test, verbose=1)
-
-    # model.save("models/model.hdf5")
-
-def model_naive_keras(X_input, y):
+def naive_keras(X_input, y):
     model = Sequential()
     model.add( Conv2D(16, 3, activation='relu', padding='same', input_shape=(320, 480, 12) ) )
     model.add( Conv2D(32, 3, activation='relu', padding='same') )

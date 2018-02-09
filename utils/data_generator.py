@@ -20,16 +20,16 @@ def set_data_gen():
     # mask_datagen.fit(masks, augment=True, seed=seed)
 
     image_generator = image_datagen.flow_from_directory(
-        'inputs/train',
+        'inputs/train', target_size=(1280, 1918),
         class_mode=None,
-        batch_size=16,
+        batch_size=2,
         seed=seed)
 
     mask_generator = mask_datagen.flow_from_directory(
-        'inputs/train_mask',
+        'inputs/train_mask', target_size=(1280, 1918),
         class_mode=None,
-        color_mode='grayscale'
-        batch_size=16,
+        color_mode='grayscale',
+        batch_size=2,
         seed=seed
     )
 

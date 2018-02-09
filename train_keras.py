@@ -14,6 +14,7 @@ if __name__ == '__main__':
     steps_per_epoch=2000,
     epochs=5,
     verbose=1)
+
     model.save('models/model_180209.hdf5')
 
     # file_list = [filename.replace('.jpg', '') for filename in os.listdir('inputs/train/')] 

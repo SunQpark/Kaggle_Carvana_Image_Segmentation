@@ -7,6 +7,7 @@ inputs/train_masks/
 inputs/train_mask/
 inputs/train/
 inputs/train_hq/
+inputs/augmented/
 Experiments.ipynb
 metadata.csv.zip
 sample_submission.csv.zip

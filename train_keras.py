@@ -11,7 +11,7 @@ if __name__ == '__main__':
     
     # model.fit(images, labels, epochs=10)
     model.fit_generator(train_generator, 
-    steps_per_epoch=2000,
+    steps_per_epoch=2544,
     epochs=5,
     verbose=1)
 

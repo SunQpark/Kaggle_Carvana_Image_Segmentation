@@ -18,7 +18,7 @@ def set_data_gen():
     seed = 1
     # image_datagen.fit(images, augment=True, seed=seed)
     # mask_datagen.fit(masks, augment=True, seed=seed)
-
+    
     image_generator = image_datagen.flow_from_directory(
         'inputs/train',
         class_mode=None,
@@ -28,7 +28,7 @@ def set_data_gen():
     mask_generator = mask_datagen.flow_from_directory(
         'inputs/train_mask',
         class_mode=None,
-        color_mode='grayscale'
+        color_mode='grayscale',
         batch_size=16,
         seed=seed
     )

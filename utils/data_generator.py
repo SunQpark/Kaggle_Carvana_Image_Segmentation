@@ -36,7 +36,6 @@ def set_data_gen():
 
     mask_generator = mask_datagen.flow(
         masks,
-        class_mode=None,
         seed=seed)
 
     # combine generators into one which yields image and masks

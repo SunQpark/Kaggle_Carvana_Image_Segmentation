@@ -35,7 +35,7 @@ def rle_decode(mask_rle, shape):
     return img.reshape(shape)
 
 # Time Test
-masks = pd.read_csv('../input/train_masks.csv')
+masks = pd.read_csv('inputs/train_masks.csv')
 num_masks = masks.shape[0]
 print('Total masks to encode/decode =', num_masks)
 

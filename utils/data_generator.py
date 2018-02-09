@@ -1,5 +1,6 @@
 import pandas as pd
 from keras.preprocessing.image import ImageDataGenerator
+from utils.rle_mask import rle_decode
 
 def set_data_gen():
     # we create two instances with the same arguments
@@ -22,11 +23,17 @@ def set_data_gen():
         class_mode=None,
         seed=seed)
 
-    masks = pd.read_csv('inputs/train_masks.csv')
-    
+    # reading rle-formatted masks from csv
+    rle_masks = pd.read_csv('inputs/train_masks.csv', usecols='rle_mask')
 
-    mask_generator = mask_datagen.flow_from_directory(
-        'inputs/train_masks',
+    # decode mask data and feed it to mask data generator
+    mask_shape = (1280, 1918)
+    masks = np.empty((rle_masks.shape[0],)+mask_shape+(1,), dtype=np.bool)
+    for rle_mask, mask in zip(rle_masks['rle_mask'], masks):
+        mask = rle_decode(mask, mask_shape)
+
+    mask_generator = mask_datagen.flow(
+        masks,
         class_mode=None,
         seed=seed)
 

@@ -1,3 +1,4 @@
+import pandas as pd
 from keras.preprocessing.image import ImageDataGenerator
 
 def set_data_gen():
@@ -19,8 +20,10 @@ def set_data_gen():
     image_generator = image_datagen.flow_from_directory(
         'inputs/train',
         class_mode=None,
-        save_to_dir='inputs/train/augment/',
         seed=seed)
+
+    masks = pd.read_csv('inputs/train_masks.csv')
+    
 
     mask_generator = mask_datagen.flow_from_directory(
         'inputs/train_masks',
@@ -33,9 +36,5 @@ def set_data_gen():
 
 
 if __name__ == '__main__':
-        
-    model.fit_generator(
-        train_generator,
-        steps_per_epoch=2000,
-        epochs=50)
+    pass
 

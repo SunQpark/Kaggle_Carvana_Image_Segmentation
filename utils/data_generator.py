@@ -25,20 +25,26 @@ def set_data_gen():
         batch_size=16,
         seed=seed)
 
-    # reading rle-formatted masks from csv
-    rle_masks = pd.read_csv('inputs/train_masks.csv')['rle_mask']
-
-    # decode mask data and feed it to mask data generator
-    mask_shape = (1280, 1918)
-    masks = np.empty((rle_masks.shape[0],)+mask_shape+(1,), dtype=np.bool)
-    
-    for (rle_mask, mask) in zip(rle_masks, masks):
-        mask = rle_decode(rle_mask, mask_shape)
-
-    mask_generator = mask_datagen.flow(
-        masks,
+    mask_generator = mask_datagen.flow_from_directory(
+        'inputs/train_masks',
+        class_mode=None,
         batch_size=16,
         seed=seed)
+
+    # # reading rle-formatted masks from csv
+    # rle_masks = pd.read_csv('inputs/train_masks.csv')['rle_mask']
+
+    # # decode mask data and feed it to mask data generator
+    # mask_shape = (1280, 1918)
+    # masks = np.empty((rle_masks.shape[0],)+mask_shape+(1,), dtype=np.bool)
+    
+    # for (rle_mask, mask) in zip(rle_masks, masks):
+    #     mask = rle_decode(rle_mask, mask_shape)
+
+    # mask_generator = mask_datagen.flow(
+    #     masks,
+    #     batch_size=16,
+    #     seed=seed)
 
     # combine generators into one which yields image and masks
     train_generator = zip(image_generator, mask_generator)

@@ -54,7 +54,7 @@ def Unet():
     
     X_out = Conv2D(1, (1, 1), activation='sigmoid')(X)
 
-    model = Model(input=X_input, outputs=X_out)
+    model = Model(inputs=X_input, outputs=X_out)
 
     model.compile(loss='binary_crossentropy',
                 optimizer='adam',

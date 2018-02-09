@@ -30,7 +30,7 @@ def set_data_gen():
     # decode mask data and feed it to mask data generator
     mask_shape = (1280, 1918)
     masks = np.empty((rle_masks.shape[0],)+mask_shape+(1,), dtype=np.bool)
-    for rle_mask, mask in zip(rle_masks, masks):
+    for (rle_mask, mask) in zip(rle_masks, masks):
         mask = rle_decode(mask, mask_shape)
 
     mask_generator = mask_datagen.flow(
@@ -44,5 +44,5 @@ def set_data_gen():
 
 
 if __name__ == '__main__':
-    pass
+    set_data_gen()
 

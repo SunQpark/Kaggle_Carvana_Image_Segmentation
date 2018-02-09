@@ -34,22 +34,24 @@ def rle_decode(mask_rle, shape):
         img[lo:hi] = 1
     return img.reshape(shape)
 
-# Time Test
-masks = pd.read_csv('inputs/train_masks.csv')
-num_masks = masks.shape[0]
-print('Total masks to encode/decode =', num_masks)
+    
+if __name__ == '__main__':
+    # Time Test
+    masks = pd.read_csv('inputs/train_masks.csv')
+    num_masks = masks.shape[0]
+    print('Total masks to encode/decode =', num_masks)
 
-time_enc = 0.0 # seconds
-time_dec = 0.0 # seconds
+    time_enc = 0.0 # seconds
+    time_dec = 0.0 # seconds
 
-for r in masks.itertuples():
-    t0 = time.clock()
-    mask = rle_decode(r.rle_mask,(1280,1918))
-    time_dec += time.clock() - t0
-    t0 = time.clock()   
-    mask_rle = rle_encode(mask)
-    time_enc += time.clock() - t0
-    #assert (mask_rle == r.rle_mask)
+    for r in masks.itertuples():
+        t0 = time.clock()
+        mask = rle_decode(r.rle_mask,(1280,1918))
+        time_dec += time.clock() - t0
+        t0 = time.clock()   
+        mask_rle = rle_encode(mask)
+        time_enc += time.clock() - t0
+        #assert (mask_rle == r.rle_mask)
 
-print('Time full encoding = {:.4f} ms per mask'.format(1000*time_enc/num_masks))
-print('Time full decoding = {:.4f} ms per mask'.format(1000*time_dec/num_masks))
+    print('Time full encoding = {:.4f} ms per mask'.format(1000*time_enc/num_masks))
+    print('Time full decoding = {:.4f} ms per mask'.format(1000*time_dec/num_masks))

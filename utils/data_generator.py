@@ -28,6 +28,7 @@ def set_data_gen():
     mask_generator = mask_datagen.flow_from_directory(
         'inputs/train_mask',
         class_mode=None,
+        color_mode='grayscale'
         batch_size=16,
         seed=seed
     )

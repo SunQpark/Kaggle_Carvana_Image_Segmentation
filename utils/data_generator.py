@@ -22,6 +22,7 @@ def set_data_gen():
     image_generator = image_datagen.flow_from_directory(
         'inputs/train',
         class_mode=None,
+        batch_size=16,
         seed=seed)
 
     # reading rle-formatted masks from csv
@@ -36,6 +37,7 @@ def set_data_gen():
 
     mask_generator = mask_datagen.flow(
         masks,
+        batch_size=16,
         seed=seed)
 
     # combine generators into one which yields image and masks

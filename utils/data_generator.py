@@ -1,3 +1,4 @@
+import numpy as np  
 import pandas as pd
 from keras.preprocessing.image import ImageDataGenerator
 from utils.rle_mask import rle_decode

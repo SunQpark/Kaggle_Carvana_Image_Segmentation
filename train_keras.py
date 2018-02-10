@@ -15,4 +15,4 @@ if __name__ == '__main__':
     epochs=5,
     verbose=1)
 
-    model.save('models/model_180209.hdf5')
+    model.save('models/model_180210.hdf5')

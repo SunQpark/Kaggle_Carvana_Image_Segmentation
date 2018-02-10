@@ -53,7 +53,6 @@ def Unet():
     X = Conv2D(16, (3, 3), activation='relu')(X)
     
     X_out = Conv2D(1, (1, 1), activation='sigmoid')(X)
-    X_out = Cropping2D(cropping=((2, 2), (3, 3)))(X_out)
 
     model = Model(inputs=X_input, outputs=X_out)
 

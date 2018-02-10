@@ -1,3 +1,3 @@
-# Kaggle: Carvana Image Segmentation Challenge - Late Submission
+# Kaggle: Carvana Image Segmentation Challenge
 
-Written by SunQ Park and SuYoung Lee, as a project being done in Deepest.
+Written by SunQ Park and SuYoung Lee, as a team project of Deepest.

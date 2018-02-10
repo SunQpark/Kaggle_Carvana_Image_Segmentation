@@ -11,8 +11,8 @@ if __name__ == '__main__':
     
     # model.fit(images, labels, epochs=10)
     model.fit_generator(train_generator, 
-    steps_per_epoch=2544,
-    epochs=5,
+    steps_per_epoch=1696,
+    epochs=6,
     verbose=1)
 
     model.save('models/model_180210.hdf5')

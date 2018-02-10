@@ -24,7 +24,7 @@ def set_data_gen():
         target_size=(1280, 1918),
         class_mode=None,
         color_mode='rgb',
-        batch_size=2,
+        batch_size=3,
         seed=seed)
 
     mask_generator = mask_datagen.flow_from_directory(
@@ -32,7 +32,7 @@ def set_data_gen():
         target_size=(1280, 1918),
         class_mode=None,
         color_mode='grayscale',
-        batch_size=2,
+        batch_size=3,
         seed=seed
     )
 

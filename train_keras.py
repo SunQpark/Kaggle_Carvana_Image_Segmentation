@@ -12,7 +12,7 @@ if __name__ == '__main__':
     # model.fit(images, labels, epochs=10)
     model.fit_generator(train_generator, 
     steps_per_epoch=1696,
-    epochs=6,
+    epochs=2,
     verbose=1)
 
-    model.save('models/model_180210.hdf5')
+    model.save('models/model_180211.hdf5')

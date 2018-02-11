@@ -14,10 +14,12 @@ plt.show()
 plt.imshow(label)
 plt.show()
 
-model = load_model('models/model_180210.hdf5')
+model = load_model('models/model_180211.hdf5')
 img = img[np.newaxis, 0:1268, 0:1908, :]
 label_result = model.predict(img)
 label_result = np.squeeze(label_result)
+np.savetxt("hi.csv", label_result, delimiter=",")
+
 print(label_result.shape)
 plt.imshow(label_result)
 plt.show()

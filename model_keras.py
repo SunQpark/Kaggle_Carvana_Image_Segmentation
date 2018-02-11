@@ -4,6 +4,7 @@ from keras.layers import Input, concatenate, Cropping2D
 from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.layers import Conv2D, MaxPool2D, ZeroPadding2D
 from keras.layers import Conv2DTranspose
+from keras.losses import mean_squared_error
 from keras.utils import np_utils
 
 
@@ -62,8 +63,15 @@ def Unet():
                 metrics=['binary_accuracy'])
     return model
 
-def dice_loss(y_true, y_pred):
-    pass
+def dice_coef(y_true, y_pred, smooth=1):
+    intersection = K.sum(y_true * y_pred, axis=[1,2,3])
+    union = K.sum(y_true, axis=[1,2,3]) + K.sum(y_pred, axis=[1,2,3])
+    return K.mean( (2. * intersection + smooth) / (union + smooth), axis=0)
+
+def dice_with_l2_loss(y_true, y_pred):
+    l2_loss = mean_squared_error(y_true, y_pred)
+    dice_loss = dice_coef(y_true, y_pred)
+    return l2_loss + dice_loss
 
 def naive_keras(X_input, y):
     model = Sequential()

@@ -5,7 +5,6 @@ from utils.data_generator import set_data_gen
 from model_keras import Unet
 
 if __name__ == '__main__':
-
     train_generator = set_data_gen()
     model = Unet()
     

@@ -1,3 +1,4 @@
+import keras.backend as K
 from keras.models import Model, load_model ,Sequential
 from keras.layers import Input, concatenate, Cropping2D
 from keras.layers import Dense, Dropout, Activation, Flatten
@@ -56,10 +57,13 @@ def Unet():
 
     model = Model(inputs=X_input, outputs=X_out)
 
-    model.compile(loss='binary_crossentropy',
+    model.compile(loss='mean_squared_error',
                 optimizer='adam',
                 metrics=['binary_accuracy'])
     return model
+
+def dice_loss(y_true, y_pred):
+    pass
 
 def naive_keras(X_input, y):
     model = Sequential()

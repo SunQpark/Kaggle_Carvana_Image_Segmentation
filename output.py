@@ -5,8 +5,8 @@ from PIL import Image
 
 filename = '0cdf5b5d0ce1_01'
 
-img = np.array(Image.open("inputs/train/train/{}.jpg".format(filename)))
-label = np.array(Image.open("inputs/train_mask/train_mask/{}_mask.gif".format(filename)))
+img = np.array(Image.open("inputs/train/train/original/{}.jpg".format(filename)))
+label = np.array(Image.open("inputs/train_mask/train_mask/original/{}_mask.gif".format(filename)))
 
 plt.imshow(img)
 plt.show()

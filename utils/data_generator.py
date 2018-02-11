@@ -22,18 +22,18 @@ def set_data_gen():
 
     image_generator = image_datagen.flow_from_directory(
         'inputs/train', 
-        target_size=(1280, 1918),
+        target_size=(1268, 1908),
         class_mode=None,
         color_mode='rgb',
-        batch_size=2,
+        batch_size=3,
         seed=seed)
 
     mask_generator = mask_datagen.flow_from_directory(
         'inputs/train_mask', 
-        target_size=(1280, 1918),
+        target_size=(1268, 1908),
         class_mode=None,
         color_mode='grayscale',
-        batch_size=2,
+        batch_size=3,
         seed=seed
     )
 

@@ -11,17 +11,17 @@ def Unet():
     X = ZeroPadding2D(padding=(92, 92))(X_input)
     X = Conv2D(16, (3, 3), activation='relu')(X)
     X = Conv2D(16, (3, 3), activation='relu')(X)
-    X0 = Cropping2D(cropping=((86, 86), (85, 85)))(X)
+    X0 = Cropping2D(cropping=((88, 88), (88, 88)))(X)
 
     X = MaxPool2D(pool_size=(2, 2), padding='same')(X)
     X = Conv2D(32, (3, 3), activation='relu')(X)
     X = Conv2D(32, (3, 3), activation='relu')(X)
-    X1 = Cropping2D(cropping=((39, 39), (39, 38)))(X)
+    X1 = Cropping2D(cropping=((40, 40), (40, 40)))(X)
 
     X = MaxPool2D(pool_size=(2, 2), padding='same')(X)
     X = Conv2D(64, (3, 3), activation='relu')(X)
     X = Conv2D(64, (3, 3), activation='relu')(X)
-    X2 = Cropping2D(cropping=((16, 15), (16, 15)))(X)
+    X2 = Cropping2D(cropping=((16, 16), (16, 16)))(X)
 
     X = MaxPool2D(pool_size=(2, 2), padding='same')(X)
     X = Conv2D(128, (3, 3), activation='relu')(X)
@@ -53,7 +53,6 @@ def Unet():
     X = Conv2D(16, (3, 3), activation='relu')(X)
     
     X_out = Conv2D(1, (1, 1), activation='sigmoid')(X)
-    X_out = Cropping2D(cropping=((2, 2), (3, 3)))(X_out)
 
     model = Model(inputs=X_input, outputs=X_out)
 

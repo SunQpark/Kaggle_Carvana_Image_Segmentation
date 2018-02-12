@@ -58,9 +58,9 @@ def Unet():
 
     model = Model(inputs=X_input, outputs=X_out)
 
-    model.compile(loss='mean_squared_error',
+    model.compile(loss=dice_with_l2_loss,
                 optimizer='adam',
-                metrics=['binary_accuracy'])
+                metrics=[dice_coef])
     return model
 
 def dice_coef(y_true, y_pred, smooth=1):
@@ -70,7 +70,7 @@ def dice_coef(y_true, y_pred, smooth=1):
 
 def dice_with_l2_loss(y_true, y_pred):
     l2_loss = mean_squared_error(y_true, y_pred)
-    dice_loss = dice_coef(y_true, y_pred)
+    dice_loss = 1 - dice_coef(y_true, y_pred)
     return l2_loss + dice_loss
 
 def naive_keras(X_input, y):

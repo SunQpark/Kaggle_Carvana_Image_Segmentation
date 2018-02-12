@@ -60,7 +60,11 @@ def Unet():
 
     model.compile(loss=dice_with_l2_loss,
                 optimizer='adam',
+<<<<<<< HEAD
                 metrics=[dice_coef])
+=======
+                metrics=dice_coef)
+>>>>>>> d9cc6bc998b939d58917572eae5360ac1a8c3785
     return model
 
 def dice_coef(y_true, y_pred, smooth=1):

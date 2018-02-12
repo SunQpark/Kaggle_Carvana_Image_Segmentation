@@ -8,7 +8,7 @@ if __name__ == '__main__':
     train_generator = set_data_gen()
     model = Unet()
     
-    batch_size = 2
+    batch_size = 3
     # model.fit(images, labels, epochs=10)
     model.fit_generator(train_generator, 
     steps_per_epoch=5088/batch_size,

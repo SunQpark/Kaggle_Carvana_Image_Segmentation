@@ -1,5 +1,5 @@
 from keras.models import load_model
-from model_keras import dice_coef, dice_with_l2_loss
+from utils.losses import *
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image

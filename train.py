@@ -2,7 +2,7 @@ import os
 import numpy as np
 from PIL import Image
 from utils.data_generator import set_data_gen
-from model_keras import Unet
+from model import Unet
 
 if __name__ == '__main__':
     train_generator = set_data_gen()

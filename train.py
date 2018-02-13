@@ -18,7 +18,7 @@ if __name__ == '__main__':
     steps_per_epoch = int(5088/batch_size)
 
     if os.path.isfile(model_path) is True:
-        model = load_model('models/{}.hdf5'.format(model_name), custom_objects=custom_objects())
+        model = load_model(model_path, custom_objects=custom_objects())
     else:
         model = Unet()
 
@@ -28,4 +28,4 @@ if __name__ == '__main__':
         epochs=epochs_per_loop,
         verbose=1)
 
-        model.save('models/{}.hdf5'.format(model_name))
+        model.save(model_path)

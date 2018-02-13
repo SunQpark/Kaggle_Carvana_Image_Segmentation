@@ -1,6 +1,10 @@
 import keras.backend as K
 from keras.losses import mean_squared_error
 
+def custom_objects():
+    return dict('dice_coef':dice_coef, 'dice_with_l2_loss':dice_with_l2_loss)
+
+
 def dice_coef(y_true, y_pred, smooth=1):
     intersection = K.sum(y_true * y_pred, axis=[1,2,3])
     union = K.sum(y_true, axis=[1,2,3]) + K.sum(y_pred, axis=[1,2,3])

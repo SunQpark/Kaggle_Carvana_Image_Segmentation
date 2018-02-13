@@ -4,7 +4,7 @@ from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.layers import Conv2D, MaxPool2D, ZeroPadding2D
 from keras.layers import Conv2DTranspose
 from keras.utils import np_utils
-from utils.losses import *
+from utils.custom_functions import *
 
 
 def Unet():
@@ -63,11 +63,6 @@ def Unet():
     return model
 
 
-def naive_keras(X_input, y):
-    model = Sequential()
-    model.add( Conv2D(16, 3, activation='relu', padding='same', input_shape=(320, 480, 12) ) )
-    model.add( Conv2D(32, 3, activation='relu', padding='same') )
-    model.add( Conv2D(1, 5, activation='sigmoid', padding='same') )
 
 if __name__ == '__main__':
     pass

@@ -4,7 +4,7 @@ from PIL import Image
 from keras.models import load_model
 from utils.data_generator import set_data_gen
 from model import Unet
-from losses import custom_objects
+from custom_functions import custom_objects
 
 if __name__ == '__main__':
     train_generator = set_data_gen()

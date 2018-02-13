@@ -62,7 +62,9 @@ def Unet():
                 metrics=[dice_coef])
     return model
 
-
+def Deeplap_v3():
+    pass
 
 if __name__ == '__main__':
-    pass
+    model = Unet()
+    model.summary()

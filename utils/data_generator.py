@@ -13,10 +13,8 @@ def set_data_gen():
     image_datagen = ImageDataGenerator(**data_gen_args)
     mask_datagen = ImageDataGenerator(**data_gen_args)
 
-    # Provide the same seed and keyword arguments to the fit and flow methods
+    # Provide the same seed and keyword arguments to the flow methods
     seed = 1
-    # image_datagen.fit(images, augment=True, seed=seed)
-    # mask_datagen.fit(masks, augment=True, seed=seed)
 
     image_generator = image_datagen.flow_from_directory(
         'inputs/train', 

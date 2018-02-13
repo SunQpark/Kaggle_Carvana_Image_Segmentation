@@ -2,7 +2,7 @@ import keras.backend as K
 from keras.losses import mean_squared_error
 
 def custom_objects():
-    return dict('dice_coef':dice_coef, 'dice_with_l2_loss':dice_with_l2_loss)
+    return {'dice_coef':dice_coef, 'dice_with_l2_loss':dice_with_l2_loss}
 
 
 def dice_coef(y_true, y_pred, smooth=1):

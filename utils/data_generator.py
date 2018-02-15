@@ -5,7 +5,7 @@ from keras.preprocessing.image import ImageDataGenerator
 
 def set_data_gen():
     # we create two instances with the same arguments
-    data_gen_args = dict(rotation_range=90.,
+    data_gen_args = dict(rotation_range=0.,
                         width_shift_range=0.1,
                         height_shift_range=0.1,
                         zoom_range=0.2,

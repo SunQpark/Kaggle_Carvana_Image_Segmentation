@@ -10,7 +10,7 @@ from utils.custom_functions import *
 
 if __name__ == '__main__':
     # formatting path to the model file to be saved/loaded
-    model_path = model_path('Unet', 'l2')
+    model_path = model_path('Unet', 'ce_with_l2')
     # model_name = 'Unet'
     # now = datetime.now()
     # today = str(now.year)[-2:] + str(now.month).zfill(2) + str(now.day).zfill(2)

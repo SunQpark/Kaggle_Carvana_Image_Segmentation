@@ -3,8 +3,8 @@ from keras.models import load_model
 from keras.losses import mean_squared_error, binary_crossentropy
 from datetime import datetime
 
-def load(filename=None, model_name='Unet', loss_name='l2'):
-    if filename is None:
+def load(model_name='Unet', loss_name='l2', file_name=None):
+    if file_name is None:
         path = model_path(model_name, loss_name)
     else:
         path = 'models/{}.hdf5'.format(file_name)

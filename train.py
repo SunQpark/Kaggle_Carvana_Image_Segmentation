@@ -21,8 +21,8 @@ if __name__ == '__main__':
     train_generator = set_data_gen()
     
     batch_size = 16
-    num_loops = 2
-    epochs_per_loop = 5
+    num_loops = 10
+    epochs_per_loop = 10
     steps_per_epoch = int(5088/batch_size)
 
     if os.path.isfile(model_path) is True:

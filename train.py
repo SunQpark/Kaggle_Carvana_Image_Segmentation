@@ -2,9 +2,10 @@ import os
 import numpy as np
 from PIL import Image
 from keras.models import load_model
-from utils.data_generator import set_data_gen
+
 from model import Unet
-from custom_functions import custom_objects
+from utils.data_generator import set_data_gen
+from utils.custom_functions import custom_objects
 
 if __name__ == '__main__':
     train_generator = set_data_gen()

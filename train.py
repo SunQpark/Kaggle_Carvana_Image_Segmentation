@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     train_generator = set_data_gen()
     
-    batch_size = 4
+    batch_size = 8
     num_loops = 2
     epochs_per_loop = 5
     steps_per_epoch = int(5088/batch_size)

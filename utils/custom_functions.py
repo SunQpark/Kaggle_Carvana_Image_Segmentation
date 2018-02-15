@@ -36,6 +36,7 @@ def dice_with_l2_loss(y_true, y_pred, weight_l2=1.0):
 def crossentropy_with_l2(y_true, y_pred, weight_l2=10.0):
     crossentropy = K.binary_crossentropy(y_true, y_pred)
     l2 = K.losses.mean_squared_error(y_true, y_pred)
+    return crossentropy + l2 * weight_l2
 
 if __name__ == '__main__':
     model = load()

@@ -10,7 +10,7 @@ from utils.custom_functions import custom_objects
 if __name__ == '__main__':
     train_generator = set_data_gen()
 
-    model_name = 'Unet_180212'
+    model_name = 'Unet_180215'
     model_path = 'models/{}.hdf5'.format(model_name)
 
     batch_size = 3

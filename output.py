@@ -1,11 +1,11 @@
 from keras.models import load_model
-from utils.custom_objects import *
+from utils.custom_functions import *
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
 filename = '0cdf5b5d0ce1_05'
-model_name = 'Unet_180212'
+model_name = 'Unet_180215'
 out_dir = 'outputs/'
 
 img_path = "inputs/train/original/{}.jpg".format(filename)
@@ -21,7 +21,6 @@ label_result = model.predict(img)
 label_result = np.squeeze(label_result)
 # np.savetxt("hi.csv", label_result, delimiter=",")
 label_pred = Image.fromarray(label_result)
-label_pred.save(out_dir + filename + '_out.png')
-# print(label_pred.shape)
-# plt.imshow(label_pred)
-# plt.show()
+# label_pred.save(out_dir + filename + '_out.png')
+plt.imshow(label_pred)
+plt.show()

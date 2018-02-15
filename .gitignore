@@ -16,3 +16,5 @@ train_hq.zip
 train_masks.csv.zip
 train_masks.zip
 train.zip
+.ipynb_checkpoints/model_test-checkpoint.ipynb
+model_test.ipynb

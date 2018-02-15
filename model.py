@@ -57,13 +57,10 @@ def Unet():
 
     model = Model(inputs=X_input, outputs=X_out)
 
-    model.compile(loss=dice_with_l2_loss,
+    model.compile(loss='mean_squared_error',
                 optimizer='adam',
                 metrics=[dice_coef])
     return model
-
-def Deeplap_v3():
-    pass
 
 if __name__ == '__main__':
     model = Unet()

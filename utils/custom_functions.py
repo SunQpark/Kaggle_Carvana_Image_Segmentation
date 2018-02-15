@@ -1,4 +1,19 @@
 import keras.backend as K
+from keras.models import load_model
+from datetime import datetime
+
+def load(filename=None, model_name='Unet', loss_name='l2'):
+    if filename is None:
+        path = model_path(model_name, loss_name)
+    else:
+        path = 'models/{}.hdf5'.format(file_name)
+    return load_model(path, custom_objects=custom_objects())
+
+def model_path(model_name, loss_name):
+    now = datetime.now()
+    today = str(now.year)[-2:] + str(now.month).zfill(2) + str(now.day).zfill(2)
+    path = 'models/{}_{}_{}.hdf5'.format(model_name, today, loss_name)
+    return path
 
 def custom_objects():
     return {
@@ -21,3 +36,7 @@ def dice_with_l2_loss(y_true, y_pred, weight_l2=1.0):
 def crossentropy_with_l2(y_true, y_pred, weight_l2=10.0):
     crossentropy = K.binary_crossentropy(y_true, y_pred)
     l2 = K.losses.mean_squared_error(y_true, y_pred)
+
+if __name__ == '__main__':
+    model = load()
+    model.summary()

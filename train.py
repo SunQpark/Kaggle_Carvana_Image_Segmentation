@@ -6,15 +6,16 @@ from datetime import datetime
 
 from model import Unet
 from utils.data_generator import set_data_gen
-from utils.custom_functions import custom_objects
+from utils.custom_functions import *
 
 if __name__ == '__main__':
     # formatting path to the model file to be saved/loaded
-    model_name = 'Unet'
-    now = datetime.now()
-    today = str(now.year)[-2:] + str(now.month).zfill(2) + str(now.day).zfill(2)
-    loss_name = 'l2'
-    model_path = 'models/{}_{}_{}.hdf5'.format(model_name, today, loss_name)
+    model_path = model_path('Unet', 'l2')
+    # model_name = 'Unet'
+    # now = datetime.now()
+    # today = str(now.year)[-2:] + str(now.month).zfill(2) + str(now.day).zfill(2)
+    # loss_name = 'l2'
+    # model_path = 'models/{}_{}_{}.hdf5'.format(model_name, today, loss_name)
     # model_path = 'models/Unet_180215_l2.hdf5'.format(model_name, today, loss)
 
     train_generator = set_data_gen()

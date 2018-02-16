@@ -57,7 +57,7 @@ def Unet():
 
     model = Model(inputs=X_input, outputs=X_out)
 
-    model.compile(loss=crossentropy_with_l2,
+    model.compile(loss='binary_crossentropy',
                 optimizer='adam',
                 metrics=[dice_coef])
     return model

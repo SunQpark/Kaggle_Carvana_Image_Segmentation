@@ -31,6 +31,7 @@ if __name__ == '__main__':
         model = Unet()
 
     for loop in range(num_loops):
+        print('\nTraining {} / {} \n'.format(loop, num_loops))
         model.fit_generator(train_generator, 
         steps_per_epoch=steps_per_epoch,
         epochs=epochs_per_loop,

@@ -26,12 +26,13 @@ if __name__ == '__main__':
     steps_per_epoch = int(5088/batch_size)
 
     if os.path.isfile(model_path) is True:
+        print('loading model from : {}'.format(model_path))
         model = load_model(model_path, custom_objects=custom_objects())
     else:
         model = Unet()
 
     for loop in range(num_loops):
-        print('\nTraining {} / {} \n'.format(loop, num_loops))
+        print('\nTraining {} / {} \n'.format(loop + 1, num_loops))
         model.fit_generator(train_generator, 
         steps_per_epoch=steps_per_epoch,
         epochs=epochs_per_loop,

@@ -3,7 +3,7 @@ import pandas as pd
 from keras.preprocessing.image import ImageDataGenerator
 # from utils.rle_mask import rle_decode
 
-def set_data_gen():
+def set_data_gen(batch_size=2):
     # we create two instances with the same arguments
     data_gen_args = dict(rotation_range=0.,
                         width_shift_range=0.1,
@@ -21,7 +21,7 @@ def set_data_gen():
         target_size=(1268, 1908),
         class_mode=None,
         color_mode='rgb',
-        batch_size=2,
+        batch_size=batch_size,
         seed=seed)
 
     mask_generator = mask_datagen.flow_from_directory(
@@ -29,7 +29,7 @@ def set_data_gen():
         target_size=(1268, 1908),
         class_mode=None,
         color_mode='grayscale',
-        batch_size=2,
+        batch_size=batch_size,
         seed=seed
     )
 

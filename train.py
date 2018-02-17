@@ -10,12 +10,12 @@ from utils.custom_functions import custom_objects
 if __name__ == '__main__':
     train_generator = set_data_gen()
 
-    model_name = 'Unet_180215_l2'
+    model_name = 'Unet_180216_samepad3'
     model_path = 'models/{}.hdf5'.format(model_name)
 
-    batch_size = 3
-    num_loops = 2
-    epochs_per_loop = 3
+    batch_size = 32
+    num_loops = 5
+    epochs_per_loop = 5
     steps_per_epoch = int(5088/batch_size)
 
     if os.path.isfile(model_path) is True:
@@ -24,7 +24,7 @@ if __name__ == '__main__':
         model = Unet()
 
     for loop in range(num_loops):
-        model.fit_generator(train_generator, 
+        model.fit_generator(train_generator,
         steps_per_epoch=steps_per_epoch,
         epochs=epochs_per_loop,
         verbose=1)

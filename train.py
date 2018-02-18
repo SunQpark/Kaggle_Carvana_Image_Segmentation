@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     batch_size = 2
     num_loops = 3
-    epochs_per_loop = 5
+    epochs_per_loop = 4
     steps_per_epoch = int(5088/batch_size)
 
     train_generator = set_data_gen(batch_size)

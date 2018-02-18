@@ -34,7 +34,7 @@ def dice_with_l2_loss(y_true, y_pred, weight_l2=1.0):
     total_loss = weight_l2 * l2_loss + (1.0 - weight_l2)*dice_loss
     return total_loss
 
-def crossentropy_with_l2(y_true, y_pred, weight_l2=10.0):
+def crossentropy_with_l2(y_true, y_pred, weight_l2=2.0):
     crossentropy = binary_crossentropy(y_true, y_pred)
     l2 = mean_squared_error(y_true, y_pred)
     return crossentropy + l2 * weight_l2

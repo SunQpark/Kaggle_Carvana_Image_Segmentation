@@ -8,7 +8,7 @@ from keras import backend as K
 from utils.custom_functions import *
 
 def Unet():
-    conv_arg = dict(padding='same', activation='elu', kernel_initializer='he_normal')
+    conv_kwarg = dict(padding='same', activation='elu', kernel_initializer='he_normal')
 
     X_input = Input(shape=(None, None, 3))
     X = ZeroPadding2D(padding=(0, 1))(X_input)

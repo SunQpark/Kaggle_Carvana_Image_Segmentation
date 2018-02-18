@@ -8,7 +8,7 @@ from keras import backend as K
 from utils.custom_functions import *
 
 def Unet():
-    conv_kwarg = {'padding':'same', 'activation':'elu', 'kernel_initializer':'he_normal'}
+    conv_arg = dict(padding='same', activation='elu', kernel_initializer='he_normal')
 
     X_input = Input(shape=(None, None, 3))
     X = ZeroPadding2D(padding=(0, 1))(X_input)
@@ -22,8 +22,8 @@ def Unet():
     # X1 = Cropping2D(cropping=((40, 40), (40, 40)))(X)
 
     X = MaxPool2D(pool_size=(2, 2), padding='same')(X1)
-    X = Conv2D(64, (3, 3), conv_kwarg)(X)
-    X2 = Conv2D(64, (3, 3), conv_kwarg)(X)
+    X = Conv2D(64, (3, 3), **conv_kwarg)(X)
+    X2 = Conv2D(64, (3, 3), **conv_kwarg)(X)
     # X2 = Cropping2D(cropping=((16, 16), (16, 16)))(X)
 
     X = MaxPool2D(pool_size=(2, 2), padding='same')(X2)

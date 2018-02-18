@@ -13,7 +13,7 @@ if __name__ == '__main__':
     model_name = 'Unet_180218_elu'
     model_path = 'models/{}.hdf5'.format(model_name)
 
-    batch_size = 3
+    batch_size = 2
     num_loops = 3
     epochs_per_loop = 5
     steps_per_epoch = int(5088/batch_size)

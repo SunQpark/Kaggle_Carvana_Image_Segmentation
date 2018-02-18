@@ -11,7 +11,7 @@ def Unet():
     conv_kwarg = dict(padding='same', activation='elu', kernel_initializer='he_normal')
 
     X_input = Input(shape=(None, None, 3))
-    X = ZeroPadding2D(padding=(0, 1))(X_input)
+    X = ZeroPadding2D(padding=(0, 2))(X_input)
     X = Conv2D(16, (3, 3), **conv_kwarg)(X)
     X0 = Conv2D(16, (3, 3), **conv_kwarg)(X)
     # X0 = Cropping2D(cropping=((88, 88), (88, 88)))(X)

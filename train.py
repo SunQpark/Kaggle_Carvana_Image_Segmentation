@@ -2,6 +2,7 @@ import os
 import numpy as np
 from PIL import Image
 from keras.models import load_model
+from keras.callbacks import ModelCheckpoint
 from datetime import datetime
 
 from model import Unet
@@ -18,6 +19,7 @@ if __name__ == '__main__':
     steps_per_epoch = int(5088/batch_size)
 
     train_generator = set_data_gen(batch_size)
+    checkpointer = ModelCheckpoint('models/{}.h5'.format(model_name), verbose=1, save_best_only=True)
 
     if os.path.isfile(model_path) is True:
         print('loading model from : {}'.format(model_path))
@@ -26,10 +28,10 @@ if __name__ == '__main__':
         model = Unet()
 
     for loop in range(num_loops):
-        print('\nTraining {} / {} \n'.format(loop + 1, num_loops))
-        model.fit_generator(train_generator, 
-        steps_per_epoch=steps_per_epoch,
-        epochs=epochs_per_loop,
-        verbose=1)
+        print('\nTraining {}/{} \n'.format(loop + 1, num_loops))
+        results = model.fit_generator(train_generator, 
+            steps_per_epoch=steps_per_epoch,
+            epochs=epochs_per_loop,
+            callbacks=[checkpointer])
 
         model.save(model_path)

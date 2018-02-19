@@ -33,9 +33,11 @@ def Unet():
 
     X = MaxPool2D(pool_size=(2, 2), padding='same')(X3)
     X = Conv2D(256, (3, 3), **conv_kwarg)(X)
-    X4 = Conv2D(256, (3, 3), **conv_kwarg)(X)
+    X = Conv2D(256, (3, 3), dilation_rate=2, **conv_kwarg)(X)
+    X = Conv2D(256, (3, 3), dilation_rate=4, **conv_kwarg)(X)
+    X = Conv2D(256, (3, 3), dilation_rate=8, **conv_kwarg)(X)
 
-    X = Conv2DTranspose(128, (2, 2), strides=(2, 2), padding='same')(X4)
+    X = Conv2DTranspose(128, (2, 2), strides=(2, 2), padding='same')(X)
     X = concatenate([X3, X])
     X = Conv2D(128, (3, 3), **conv_kwarg)(X)
     X = Conv2D(128, (3, 3), **conv_kwarg)(X)
@@ -60,7 +62,7 @@ def Unet():
 
     model = Model(inputs=X_input, outputs=X_out)
 
-    model.compile(loss=crossentropy_with_l2,
+    model.compile(loss=bce_dice_loss,
                 optimizer='adam',
                 metrics=[dice_coef])
     return model

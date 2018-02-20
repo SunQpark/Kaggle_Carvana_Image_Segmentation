@@ -10,7 +10,7 @@ from utils.data_generator import set_data_gen
 from utils.custom_functions import *
 
 if __name__ == '__main__':
-    model_name = 'Unet_180218_elu'
+    model_name = 'Unet_180220_elu'
     model_path = 'models/{}.hdf5'.format(model_name)
 
     batch_size = 2

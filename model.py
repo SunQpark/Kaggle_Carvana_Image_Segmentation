@@ -36,6 +36,9 @@ def Unet():
     X = Conv2D(256, (3, 3), dilation_rate=2, **conv_kwarg)(X)
     X = Conv2D(256, (3, 3), dilation_rate=4, **conv_kwarg)(X)
     X = Conv2D(256, (3, 3), dilation_rate=8, **conv_kwarg)(X)
+    X = Conv2D(256, (3, 3), dilation_rate=16, **conv_kwarg)(X)
+    X = Conv2D(256, (3, 3), dilation_rate=32, **conv_kwarg)(X)
+
 
     X = Conv2DTranspose(128, (2, 2), strides=(2, 2), padding='same')(X)
     X = concatenate([X3, X])

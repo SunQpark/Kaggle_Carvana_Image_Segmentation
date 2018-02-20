@@ -21,7 +21,7 @@ def custom_objects():
         'dice_coef':dice_coef, 
         'dice_with_l2_loss':dice_with_l2_loss, 
         'crossentropy_with_l2':crossentropy_with_l2,
-        'bde_dice_loss':bde_dice_loss
+        'bce_dice_loss':bce_dice_loss
         }
 
 

@@ -19,3 +19,4 @@ train_masks.zip
 train.zip
 .ipynb_checkpoints/model_test-checkpoint.ipynb
 outputs/submission2.zip
+outputs/submission.csv

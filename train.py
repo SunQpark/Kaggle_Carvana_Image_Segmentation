@@ -9,11 +9,11 @@ from utils.data_generator import set_data_gen
 from utils.custom_functions import *
 
 if __name__ == '__main__':
-    model_name = 'Unet_180220_3rd_sol'
+    model_name = 'Unet_180221_3rd_sol'
     model_path = 'models/{}.hdf5'.format(model_name)
 
     batch_size = 2
-    num_loops = 5
+    num_loops = 4
     epochs_per_loop = 5
     steps_per_epoch = int(5088/batch_size)
 
